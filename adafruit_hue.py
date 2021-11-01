@@ -41,13 +41,9 @@ class Bridge:
     def __init__(self, wifi_manager, bridge_ip=None, username=None):
         """
         Creates an instance of the Philips Hue Bridge Interface.
-        :param wifi_manager wifi_manager: WiFiManager from ESPSPI_WiFiManager/ESPAT_WiFiManager
+        :param wifi_manager: adafruit_requests Session instance or  WiFiManager from ESPSPI_WiFiManager/ESPAT_WiFiManager
         """
-        wifi_type = str(type(wifi_manager))
-        if "ESPSPI_WiFiManager" in wifi_type or "ESPAT_WiFiManager" in wifi_type:
-            self._wifi = wifi_manager
-        else:
-            raise TypeError("This library requires a WiFiManager object.")
+        self._wifi = wifi_manager
         self._ip = bridge_ip
         self._username = username
         if bridge_ip and username is not None:
